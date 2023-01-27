@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Filters" icon-name="utility:filterList">
+        <div class="slds-m-horizontal_small slds-m-vertical_small">
+            <lightning-combobox 
+                    name="types" 
+                    label="Types available" 
+                    value={value_type} 
+                    placeholder="Select an type" 
+                    options={options_types} 
+                    onchange={handleChangeType}
+                    class="slds-m-vertical_xx-small">
+            </lightning-combobox>
+            <template for:each={show_value_type} for:item="val">
+                <lightning-badge key={val} label={val}></lightning-badge>
+            </template>
+        </div>
+        <div class="slds-m-horizontal_small slds-m-vertical_small">
+            <lightning-combobox
+                    name="generations"
+                    label="Generations available"
+                    value={value_generation}
+                    placeholder="Select an generation"
+                    options={options_generation}
+                    onchange={handleChangeGeneration}
+                    class="slds-m-vertical_xx-small">
+            </lightning-combobox>
+            <template if:true={show_value_generation}>
+                <lightning-badge label={show_value_generation}></lightning-badge>
+            </template>
+        </div>
+        <div class="slds-m-horizontal_small slds-m-vertical_small slds-m-vertical_small">
+            <lightning-input
+                name="enter-search"
+                label="Search for name"
+                value={value_name}
+                type="search"
+                placeholder="Enter the name of the pokemon to search"
+                onchange={handleChangeName}
+                class="slds-m-vertical_xx-small"
+            ></lightning-input>
+            <lightning-badge label={show_value_name}></lightning-badge>
+        </div>
+        <div class="slds-m-vertical_large slds-align_absolute-center">
+            <lightning-button variant="brand" label="Apply" title="Search by filter" onclick={handleClickSearch} >
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,63 @@
+<template>
+    <lightning-card title="Pokemons" icon-name="utility:bug">
+        <template if:true={loading}>
+            <div class="exampleHolder">
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </div>
+        </template>
+        <div class="slds-align_absolute-center">
+            <span>Results({number_result})</span>
+        </div>
+        <div class="slds-scrollable_y" style="height:23rem;width:100%">
+        <template if:true={pokemons}>
+            <lightning-layout multiple-rows="true">
+                <template for:each={pokemons} for:item="pokemons_details">
+                    <lightning-layout-item key={pokemons_details.Id} size="12" class="slds-var-p-around_x-small slds-hint-parent">
+
+                        <lightning-card title={pokemons_details.Name} size="12" class="pokemon_card">
+                            <div class="slds-var-p-horizontal_small">
+                                <div class="slds-grid slds-wrap slds-text-align_center slds-p-top_large slds-p-bottom_small details_card">
+                                    <div class="slds-col slds-size_2-of-12 slds-align_absolute-center">
+                                        <a onclick={navigateToViewPokemon} data-id={pokemons_details.Id} class="details_image">
+                                            <img src={pokemons_details.Picture__c} alt="pokemon" />
+                                        </a>
+                                    </div>
+                                    <div class="slds-col slds-size_4-of-12">
+                                        <div class="slds-m-bottom_x-small slds-m-left_x-large slds-p-around_x-small list_details">
+                                            <div class="slds-text-color_inverse"><strong>Height: </strong>{pokemons_details.Height__c}</div>
+                                        </div>
+                                        <div class="slds-m-bottom_x-small slds-m-left_x-large slds-p-around_x-small list_details">
+                                            <div class="slds-text-color_inverse"><strong>Weight: </strong>{pokemons_details.Weight__c}</div>
+                                        </div>
+                                        <div class="slds-m-bottom_x-small slds-m-left_x-large slds-p-around_x-small list_details">
+                                            <div class="slds-text-color_inverse"><strong>Generation: </strong>{pokemons_details.Generation__c}</div>
+                                        </div>
+                                        <div class="slds-m-bottom_x-small slds-m-left_x-large slds-p-around_x-small list_details">
+                                            <div class="slds-text-color_inverse"><strong>Types: </strong>{pokemons_details.Types__c}</div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_4-of-12">
+                                        <div class="slds-m-bottom_x-small slds-m-left_x-large slds-m-right_x-large slds-p-around_x-small list_details">
+                                            <div class="slds-text-color_inverse"><strong>Stats hp: </strong>{pokemons_details.Stats_hp__c}</div>
+                                        </div>
+                                        <div class="slds-m-bottom_x-small slds-m-left_x-large slds-m-right_x-large slds-p-around_x-small list_details">
+                                            <div class="slds-text-color_inverse"><strong>Stat attack: </strong>{pokemons_details.Stats_attack__c}</div>
+                                        </div>
+                                        <div class="slds-m-bottom_x-small slds-m-left_x-large slds-m-right_x-large slds-p-around_x-small list_details">
+                                            <div class="slds-text-color_inverse"><strong>Stat defense: </strong>{pokemons_details.Stats_defense__c}</div>
+                                        </div>
+                                        <div class="slds-m-bottom_x-small slds-m-left_x-large slds-m-right_x-large slds-p-around_x-small list_details">
+                                            <div class="slds-text-color_inverse"><strong>Stat speed: </strong>{pokemons_details.Stats_speed__c}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-card>
+
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </template>
+    </div>
+    </lightning-card>
+</template>
